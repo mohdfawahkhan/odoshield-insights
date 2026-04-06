@@ -7,6 +7,7 @@ import {
   Network,
   BadgeCheck,
   Settings,
+  Zap,
 } from "lucide-react";
 
 const navItems = [
@@ -27,36 +28,46 @@ export function AppSidebar() {
   };
 
   return (
-    <aside className="w-60 shrink-0 border-r border-border flex flex-col bg-background">
-      <div className="h-14 flex items-center gap-2 px-5 border-b border-border">
-        <Shield className="h-5 w-5 text-primary" />
-        <span className="text-base font-semibold tracking-tight text-foreground">
+    <aside className="w-60 shrink-0 border-r border-border flex flex-col bg-sidebar">
+      {/* Logo */}
+      <div className="h-16 flex items-center gap-2.5 px-5 border-b border-border">
+        <div className="h-8 w-8 rounded-lg bg-primary/20 flex items-center justify-center glow-primary">
+          <Shield className="h-4.5 w-4.5 text-primary" />
+        </div>
+        <span className="text-base font-bold tracking-tight text-foreground">
           OdoShield
         </span>
+        <Zap className="h-3 w-3 text-primary animate-pulse-glow ml-auto" />
       </div>
 
-      <nav className="flex-1 py-3 px-3 space-y-0.5">
-        {navItems.map((item) => {
+      {/* Nav */}
+      <nav className="flex-1 py-4 px-3 space-y-1">
+        {navItems.map((item, i) => {
           const active = isActive(item.url);
           return (
             <Link
               key={item.title}
               to={item.url}
-              className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors duration-150 ${
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-300 group ${
                 active
-                  ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
-                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  ? "bg-primary/15 text-primary font-medium shadow-[inset_0_0_20px_-8px_hsl(var(--primary)/0.2)]"
+                  : "text-muted-foreground hover:bg-secondary hover:text-foreground"
               }`}
+              style={{ animationDelay: `${i * 50}ms` }}
             >
-              <item.icon className="h-4 w-4" />
+              <item.icon className={`h-4 w-4 transition-transform duration-300 group-hover:scale-110 ${active ? "text-primary" : ""}`} />
               <span>{item.title}</span>
+              {active && (
+                <span className="ml-auto h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
+              )}
             </Link>
           );
         })}
       </nav>
 
+      {/* User */}
       <div className="border-t border-border p-4 flex items-center gap-3">
-        <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-xs font-semibold">
+        <div className="h-9 w-9 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-primary-foreground text-xs font-bold shadow-lg">
           PM
         </div>
         <div className="min-w-0">
