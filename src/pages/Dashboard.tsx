@@ -1,6 +1,25 @@
 import { Link } from "react-router-dom";
 import { TrendingUp, AlertTriangle, Shield, BadgeCheck, Activity } from "lucide-react";
 
+/**
+ * TODO [TigerGraph Integration]:
+ * Replace all mock data below with TigerGraph GSQL queries:
+ *
+ * 1. `stats` → GET /query/{graph_name}/dashboard_stats
+ *    Returns aggregate counts: total vehicles scanned, fraud rings, avg loss, certificates issued.
+ *
+ * 2. `suspiciousCenters` → GET /query/{graph_name}/top_suspicious_centers?limit=3
+ *    Runs a risk scoring query on ServiceCenter vertices, ranked by connected fraud edges.
+ *
+ * 3. `flaggedVehicles` → GET /query/{graph_name}/recently_flagged?limit=3
+ *    Returns Vehicle vertices with riskScore > threshold, ordered by detection date.
+ *
+ * 4. `riskDist` → GET /query/{graph_name}/risk_distribution
+ *    Aggregates vehicle count by risk bucket (high/medium/low).
+ *
+ * 5. SVG Graph (carNodes, centerNode) → GET /query/{graph_name}/fraud_cluster_subgraph?centerId=...
+ *    Returns subgraph of a specific fraud cluster for visualization.
+ */
 const stats = [
   { label: "Vehicles Scanned", value: "1,24,847", sub: "+2.3% this week", icon: Activity, glow: "glow-primary", accent: "text-primary" },
   { label: "Fraud Rings Detected", value: "312", sub: "14 new this month", icon: AlertTriangle, glow: "glow-fraud", accent: "text-destructive" },

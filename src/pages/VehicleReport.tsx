@@ -1,6 +1,26 @@
 import { Shield, FileText, Wrench, GitCommit, AlertTriangle } from "lucide-react";
 import { RadialBarChart, RadialBar, PolarAngleAxis } from "recharts";
 
+/**
+ * TODO [TigerGraph Integration]:
+ * Replace all mock data below with TigerGraph GSQL queries:
+ *
+ * 1. Vehicle header info → GET /query/{graph_name}/vehicle_details?vin={vin}
+ *    Returns Vehicle vertex attributes (make, model, year, city, state, riskScore).
+ *
+ * 2. `gaugeData` (fraud score) → GET /query/{graph_name}/fraud_probability?vin={vin}
+ *    Runs the anomaly detection algorithm and returns a 0-100 probability score.
+ *
+ * 3. `timeline` → GET /query/{graph_name}/mileage_timeline?vin={vin}
+ *    Returns ordered MileageRecord edges/vertices with source and verification status.
+ *
+ * 4. `sources` → GET /query/{graph_name}/data_sources?vin={vin}
+ *    Returns DataSource vertices connected to this vehicle with verification status.
+ *
+ * 5. Graph Connections → GET /query/{graph_name}/vehicle_connections?vin={vin}
+ *    Traverses Owner→Vehicle→ServiceCenter→Insurance edges to find related entities.
+ */
+
 const gaugeData = [{ value: 85 }];
 
 const timeline = [

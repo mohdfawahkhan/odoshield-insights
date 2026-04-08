@@ -6,8 +6,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AppLayout } from "@/components/AppLayout";
 import Dashboard from "@/pages/Dashboard";
 import VehicleReport from "@/pages/VehicleReport";
+import VehicleLookup from "@/pages/VehicleLookup";
+import FraudRings from "@/pages/FraudRings";
 import Certificate from "@/pages/Certificate";
-import Placeholder from "@/pages/Placeholder";
+import Settings from "@/pages/Settings";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,9 +25,9 @@ const App = () => (
             <Route path="/" element={<Dashboard />} />
             <Route path="/report/:vin" element={<VehicleReport />} />
             <Route path="/certificate" element={<Certificate />} />
-            <Route path="/lookup" element={<Placeholder />} />
-            <Route path="/fraud-rings" element={<Placeholder />} />
-            <Route path="/settings" element={<Placeholder />} />
+            <Route path="/lookup" element={<VehicleLookup />} />
+            <Route path="/fraud-rings" element={<FraudRings />} />
+            <Route path="/settings" element={<Settings />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

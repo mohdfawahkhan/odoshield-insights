@@ -1,6 +1,20 @@
 import { useState } from "react";
 import { Download, ChevronDown, ChevronUp, BadgeCheck, ShieldCheck, Sparkles } from "lucide-react";
 
+/**
+ * TODO [TigerGraph Integration]:
+ * Replace hardcoded certificate data with TigerGraph queries:
+ *
+ * 1. Vehicle trust status → GET /query/{graph_name}/trust_status?vin={vin}
+ *    Returns trust score, verification status, and certificate ID from the graph.
+ *
+ * 2. Verification progress → GET /query/{graph_name}/verification_schedule?vin={vin}
+ *    Returns last verification date and next due date.
+ *
+ * 3. Resale value impact → Could be a computed field based on trust score
+ *    or fetched from an external valuation API.
+ */
+
 export default function Certificate() {
   const [howOpen, setHowOpen] = useState(false);
 
